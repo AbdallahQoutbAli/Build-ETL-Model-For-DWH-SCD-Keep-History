@@ -1,5 +1,7 @@
-# SSIS BUILD ETL MODEL TO KEY Histroy
+# SSIS BUILD ETL MODEL TO KEEP Histroy
 This Project Will help you to build a ETL Model for Your Company Using SSIS 
+
+The Frist Example for Small Tables From 1 : 800 K Record IF You Have Large Table See Second Example 
 
 1- I Create DATALAKE & DWH Database <br />  
 Note : DATALAKE maybe (SQL SERVER,CRM,ORACLE,MYSQL.....) (Scripted Attached) <br />
@@ -38,5 +40,26 @@ Where CITY_KEY = ?
 and END_DATE='2999-12-31 12:00:00.000'
 ``` 
 
+** Second Example For Large Tables 
+
+![alt text](https://github.com/abdallahkotb5566/Build-ETL-Model-For-DWH-SCD-/blob/main/Second%20Example.PNG)
+
+In The Below Solution , We Will Use Full Outer Join To made a Check in Key Value 
+if The Key Null this New Recored Else It Will Be Compere in Condition Split  as Show Below 
+
+
+![image](https://user-images.githubusercontent.com/47276503/217359586-3ff85f83-b6c7-406c-8467-a18ff26b3cb4.png)
+
+
+This solution Help me To Optimize data transfer from 4 hours to 15 minutes in some of the Large tables > 50 M records
+
+![image](https://user-images.githubusercontent.com/47276503/217361373-3ac57aac-8144-4b99-891c-0064d418d34f.png)
+
+After Using The new Model 
+![image](https://user-images.githubusercontent.com/47276503/217361659-bcb8861b-1880-4c9b-8ae4-403062906909.png)
+
+
+Thanks For Your Time 
+Abdallah.Qoutb@Gmail.com
 
 
