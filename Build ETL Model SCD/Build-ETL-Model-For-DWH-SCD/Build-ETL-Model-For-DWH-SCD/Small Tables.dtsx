@@ -1,0 +1,2242 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/26/2022 11:38:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PPDSPDWHDB01"
+  DTS:CreatorName="HRDFHQ\aq.ali-c"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{2809E0D7-0995-4F0C-869B-49DED5A3FD84}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="1025"
+  DTS:ObjectName="CITY"
+  DTS:PackageType="5"
+  DTS:VersionBuild="235"
+  DTS:VersionGUID="{20E472CD-537B-4B0B-BE3E-C79869B825BB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DataLake Connection]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{517975ED-9C4D-423E-A62B-117F95BD8841}"
+      DTS:ObjectName="DataLake Connection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DATALAKE;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DWH Connection]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{33fbc911-dc3d-44c9-8b5b-4b805ebf5a97}"
+      DTS:ObjectName="DWH Connection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CE43C0C6-E45C-46E4-8854-3C0A809CC698}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Del_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{497B3F8C-3D60-48DA-A730-763D7C145F80}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Enddate">
+      <DTS:VariableValue
+        DTS:DataType="7">12/31/2999 12:00:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D9FA9AFD-4D7B-4D28-B445-47DDD9114688}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="INSERT_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D8FAAE1D-073A-4215-A148-4620FB42AA5B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="MAXSTEP_ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7BB72EA1-731F-4144-8031-C058712BF86F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="REJECTED_CONT">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83336B80-66E4-41AC-88FB-4B09B902CDE4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="STG_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4DB1A2E5-CFDE-4DB0-9531-E51487B0266C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UPDATED_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Deletded"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A2E0B700-92A9-40C4-B89A-A33F32D2BEFA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Deletded"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Deletded\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select City_key 
+from City</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select City_key 
+from City) [refTable]
+where [refTable].[City_key] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="City_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1256</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Deletded\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DataLake Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DataLake Connection]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Deletded\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Deletded\Lookup.Inputs[Lookup Input].Columns[CITY_KEY]"
+                      cachedDataType="i4"
+                      cachedName="CITY_KEY"
+                      lineageId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">City_key</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Deletded\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Deletded\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Deletded\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Deletded\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Deletded\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Deletded\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Deletded\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Deletded\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Deletded\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Deletded\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Deletded\OLE DB Command 1"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command 1"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE x
+SET x.Status = 'D'
+, x.END_DATE=GETDATE()
+
+FROM (
+SELECT  Status,END_DATE,ROW_NUMBER() OVER (ORDER BY END_DATE desc) AS New_CODE_DEST
+FROM [dbo].CITY A
+where CITY_KEY = ? 
+) x
+
+where x.New_CODE_DEST=1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1256</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Deletded\OLE DB Command 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DWH Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DWH Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Deletded\OLE DB Command 1.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Deletded\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[CITY_KEY]"
+                      cachedDataType="i4"
+                      cachedName="CITY_KEY"
+                      externalMetadataColumnId="Package\Deletded\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Deletded\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Deletded\OLE DB Command 1.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Deletded\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Deletded\OLE DB Command 1.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Deletded\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Deletded\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Deletded\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Deletded\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Deletded\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Deletded\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ECONOMICACTIVITYTYPE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select 
+[CITY_KEY]
+
+	  from (
+	  select * ,ROW_NUMBER() OVER (PARTITION BY [CITY_KEY] ORDER BY [END_DATE] DESC ) AS RN
+	  from  [dbo].[CITY]
+	  where [END_DATE] ='2999-12-31 12:00:00.000'	  ) as T 
+
+	  WHERE T.RN  = 1</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1256</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Deletded\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DWH Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DWH Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CITY_KEY]"
+                      lineageId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]"
+                      name="CITY_KEY"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CITY_KEY]"
+                      dataType="i4"
+                      name="CITY_KEY" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CITY_KEY]"
+                      dataType="i4"
+                      lineageId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CITY_KEY]"
+                      name="CITY_KEY" />
+                    <outputColumn
+                      refId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Deletded.Paths[Lookup No Match Output]"
+              endId="Package\Deletded\OLE DB Command 1.Inputs[OLE DB Command Input]"
+              name="Lookup No Match Output"
+              startId="Package\Deletded\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Deletded.Paths[OLE DB Source Output]"
+              endId="Package\Deletded\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Deletded\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\iNSERT &amp; UPDATED"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E1ADF32D-8250-40FA-8CCE-1CA343613A24}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="iNSERT &amp; UPDATED"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\iNSERT &amp; UPDATED\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[INSERT_DATA]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[INSERT_DATA]"
+                      name="INSERT_DATA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[END_DT]"
+                      dataType="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[END_DT]"
+                      name="END_DT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::Enddate]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::Enddate]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,1,1252)"I"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,1,1252)"I"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[Status Upated]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[Status Upated]"
+                      name="Status Upated"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,1,1252)"U"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,1,1252)"U"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\Get inseted Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Get inseted Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::INSERT_COUNT</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\iNSERT &amp; UPDATED\Get inseted Rows.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Get inseted Rows.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Get inseted Rows.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\Get Updated Row"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Get Updated Row">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::UPDATED_COUNT</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\iNSERT &amp; UPDATED\Get Updated Row.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Get Updated Row.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Get Updated Row.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="iNSERT NEW ROWS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CITY]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DWH Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DWH Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].Columns[CITY_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CITY_NAME"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[CITY_NAME]"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_NAME]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].Columns[CITY_KEY]"
+                      cachedDataType="i4"
+                      cachedName="CITY_KEY"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[CITY_KEY]"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].Columns[END_DT]"
+                      cachedDataType="date"
+                      cachedName="END_DT"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[END_DATE]"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[END_DT]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].Columns[INSERT_DATA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="INSERT_DATA"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[INSERT_DATE]"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[INSERT_DATA]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].Columns[Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[CITY_NAME]"
+                      dataType="wstr"
+                      length="50"
+                      name="CITY_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[CITY_KEY]"
+                      dataType="i4"
+                      name="CITY_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[CITY_SK]"
+                      dataType="i4"
+                      name="CITY_SK" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[INSERT_DATE]"
+                      dataType="dbTimeStamp"
+                      name="INSERT_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[END_DATE]"
+                      dataType="dbTimeStamp"
+                      name="END_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="iNSERT NEW ROWS 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CITY]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DWH Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DWH Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].Columns[CITY_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CITY_NAME"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[CITY_NAME]"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_NAME]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].Columns[CITY_KEY]"
+                      cachedDataType="i4"
+                      cachedName="CITY_KEY"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[CITY_KEY]"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].Columns[END_DT]"
+                      cachedDataType="date"
+                      cachedName="END_DT"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[END_DATE]"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[END_DT]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].Columns[INSERT_DATA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="INSERT_DATA"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[INSERT_DATE]"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[INSERT_DATA]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].Columns[Status Upated]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Status Upated"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[Status Upated]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[CITY_NAME]"
+                      dataType="wstr"
+                      length="50"
+                      name="CITY_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[CITY_KEY]"
+                      dataType="i4"
+                      name="CITY_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[CITY_SK]"
+                      dataType="i4"
+                      name="CITY_SK" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[INSERT_DATE]"
+                      dataType="dbTimeStamp"
+                      name="INSERT_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[END_DATE]"
+                      dataType="dbTimeStamp"
+                      name="END_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  
+[CITY_KEY]
+        from (
+	  select * ,ROW_NUMBER() OVER (PARTITION BY [CITY_KEY] ORDER BY [END_DATE] DESC ) AS RN
+	  from  [dbo].[CITY]
+ ) as T 
+
+	  WHERE T.RN =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT  
+[CITY_KEY]
+        from (
+	  select * ,ROW_NUMBER() OVER (PARTITION BY [CITY_KEY] ORDER BY [END_DATE] DESC ) AS RN
+	  from  [dbo].[CITY]
+ ) as T 
+
+	  WHERE T.RN =1) [refTable]
+where [refTable].[CITY_KEY] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CITY_KEY" dataType="DT_WSTR" length="500" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1256</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\iNSERT &amp; UPDATED\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DWH Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DWH Connection]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\iNSERT &amp; UPDATED\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Lookup.Inputs[Lookup Input].Columns[CITY_KEY]"
+                      cachedDataType="i4"
+                      cachedName="CITY_KEY"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CITY_KEY</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\Lookup 1"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup 1"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  
+CITY_NAME
+        from (
+	  select * ,ROW_NUMBER() OVER (PARTITION BY [CITY_KEY] ORDER BY [END_DATE] DESC ) AS RN
+	  from  [dbo].[CITY]
+ ) as T 
+
+	  WHERE T.RN =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT  
+CITY_NAME
+        from (
+	  select * ,ROW_NUMBER() OVER (PARTITION BY [CITY_KEY] ORDER BY [END_DATE] DESC ) AS RN
+	  from  [dbo].[CITY]
+ ) as T 
+
+	  WHERE T.RN =1) [refTable]
+where [refTable].[CITY_NAME] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CITY_NAME" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_NAME]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1256</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\iNSERT &amp; UPDATED\Lookup 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DWH Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DWH Connection]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\iNSERT &amp; UPDATED\Lookup 1.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Lookup 1.Inputs[Lookup Input].Columns[CITY_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CITY_NAME"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_NAME]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CITY_NAME</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Lookup 1.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup Match Output].Columns[CITY_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup Match Output].Columns[CITY_NAME]"
+                      name="CITY_NAME"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CITY_NAME</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Lookup 1.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\Lookup 1.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [CITY]
+SET END_DATE=?
+Where CITY_KEY = ? 
+and END_DATE='2999-12-31 12:00:00.000'</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1256</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DWH Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DWH Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input].Columns[CITY_KEY]"
+                      cachedDataType="i4"
+                      cachedName="CITY_KEY"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]" />
+                    <inputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input].Columns[INSERT_DATA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="INSERT_DATA"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output].Columns[INSERT_DATA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\iNSERT &amp; UPDATED\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [CITY_NAME]
+      ,[CITY_KEY]
+  FROM [dbo].[CITY]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DataLake Connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DataLake Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CITY_NAME]"
+                      length="50"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_NAME]"
+                      name="CITY_NAME"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CITY_KEY]"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].Columns[CITY_KEY]"
+                      name="CITY_KEY"
+                      truncationRowDisposition="IgnoreFailure" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CITY_NAME]"
+                      dataType="wstr"
+                      length="50"
+                      name="CITY_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CITY_KEY]"
+                      dataType="i4"
+                      name="CITY_KEY" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CITY_NAME]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CITY_NAME]"
+                      name="CITY_NAME" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CITY_KEY]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CITY_KEY]"
+                      name="CITY_KEY" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\iNSERT &amp; UPDATED.Paths[Derived Column Output]"
+              endId="Package\iNSERT &amp; UPDATED\Lookup.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\iNSERT &amp; UPDATED\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\iNSERT &amp; UPDATED.Paths[Lookup Match Output]"
+              endId="Package\iNSERT &amp; UPDATED\Lookup 1.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\iNSERT &amp; UPDATED.Paths[Lookup No Match Output]"
+              endId="Package\iNSERT &amp; UPDATED\Get inseted Rows.Inputs[Row Count Input 1]"
+              name="Lookup No Match Output"
+              startId="Package\iNSERT &amp; UPDATED\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\iNSERT &amp; UPDATED.Paths[Lookup No Match Output1]"
+              endId="Package\iNSERT &amp; UPDATED\Get Updated Row.Inputs[Row Count Input 1]"
+              name="Lookup No Match Output"
+              startId="Package\iNSERT &amp; UPDATED\Lookup 1.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\iNSERT &amp; UPDATED.Paths[OLE DB Command Output]"
+              endId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1.Inputs[OLE DB Destination Input]"
+              name="OLE DB Command Output"
+              startId="Package\iNSERT &amp; UPDATED\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\iNSERT &amp; UPDATED.Paths[OLE DB Source Output]"
+              endId="Package\iNSERT &amp; UPDATED\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\iNSERT &amp; UPDATED\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\iNSERT &amp; UPDATED.Paths[Row Count Output 1]"
+              endId="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\iNSERT &amp; UPDATED\Get inseted Rows.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\iNSERT &amp; UPDATED.Paths[Row Count Output 11]"
+              endId="Package\iNSERT &amp; UPDATED\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Row Count Output 1"
+              startId="Package\iNSERT &amp; UPDATED\Get Updated Row.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{72FD47AB-CCCF-4134-A3AD-6BF2E20989A0}"
+      DTS:From="Package\iNSERT &amp; UPDATED"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Deletded" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Deletded"
+          TopLeft="143.428573871146,263.670591933175" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\iNSERT &amp; UPDATED"
+          TopLeft="132.000001226153,193.976472467205" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="218.400001226153,235.576472467205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.971427355007,28.09411946597"
+              Start="0,0"
+              End="-14.971427355007,20.59411946597">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.047059732985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.047059732985"
+                    Point2="0,14.047059732985"
+                    Point3="-4,14.047059732985" />
+                  <mssgle:LineSegment
+                    End="-10.971427355007,14.047059732985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.971427355007,14.047059732985"
+                    Point2="-14.971427355007,14.047059732985"
+                    Point3="-14.971427355007,18.047059732985" />
+                  <mssgle:LineSegment
+                    End="-14.971427355007,20.59411946597" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Deletded">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\Deletded\OLE DB Command 1"
+          TopLeft="124.8,317.6" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Deletded\OLE DB Source"
+          TopLeft="160,87.2" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Deletded\Lookup"
+          TopLeft="115.2,171.2" />
+        <EdgeLayout
+          Id="Package\Deletded.Paths[OLE DB Source Output]"
+          TopLeft="234.8,128.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63.2,42.4"
+              Start="0,0"
+              End="-63.2,34.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.2"
+                    Point2="0,21.2"
+                    Point3="-4,21.2" />
+                  <mssgle:LineSegment
+                    End="-59.2,21.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-59.2,21.2"
+                    Point2="-63.2,21.2"
+                    Point3="-63.2,25.2" />
+                  <mssgle:LineSegment
+                    End="-63.2,34.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Deletded.Paths[Lookup No Match Output]"
+          TopLeft="171.6,212.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.4,104.8"
+              Start="0,0"
+              End="40.4,97.3">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.4"
+                    Point2="0,52.4"
+                    Point3="4,52.4" />
+                  <mssgle:LineSegment
+                    End="36.4,52.4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.4,52.4"
+                    Point2="40.4,52.4"
+                    Point3="40.4,56.4" />
+                  <mssgle:LineSegment
+                    End="40.4,97.3" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-35.60638671875,57.4,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Deletded\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Deletded\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\iNSERT &amp; UPDATED">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\iNSERT &amp; UPDATED\OLE DB Source"
+          TopLeft="474.228579491012,35.0117648603182" />
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\iNSERT &amp; UPDATED\Get Updated Row"
+          TopLeft="876.342860908897,480.18823747338" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\iNSERT &amp; UPDATED\Lookup"
+          TopLeft="468.487082794596,362.135579308508" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\iNSERT &amp; UPDATED\OLE DB Command"
+          TopLeft="875.561914224581,604.768632558994" />
+        <NodeLayout
+          Size="121.6,41.6"
+          Id="Package\iNSERT &amp; UPDATED\Lookup 1"
+          TopLeft="900.285729617489,374.094122893588" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS"
+          TopLeft="6.54285714528996,553.023534934991" />
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\iNSERT &amp; UPDATED\Get inseted Rows"
+          TopLeft="39.2,333.6" />
+        <EdgeLayout
+          Id="Package\iNSERT &amp; UPDATED.Paths[Row Count Output 1]"
+          TopLeft="119.2,375.2">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-26.6571428547101,177.823534934991"
+              Start="0,0"
+              End="-26.6571428547101,170.323534934991">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.9117674674955" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,84.9117674674955"
+                    Point2="0,88.9117674674955"
+                    Point3="-4,88.9117674674955" />
+                  <mssgle:LineSegment
+                    End="-22.6571428547101,88.9117674674955" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.6571428547101,88.9117674674955"
+                    Point2="-26.6571428547101,88.9117674674955"
+                    Point3="-26.6571428547101,92.9117674674955" />
+                  <mssgle:LineSegment
+                    End="-26.6571428547101,170.323534934991" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\iNSERT &amp; UPDATED.Paths[Lookup No Match Output1]"
+          TopLeft="958.914295263193,415.694122893588">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64.494114579792"
+              Start="0,0"
+              End="0,56.994114579792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.994114579792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,22.692369789896,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\iNSERT &amp; UPDATED.Paths[Lookup No Match Output]"
+          TopLeft="468.487082794596,382.935579308508">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-269.287082794596,-28.535579308508"
+              Start="0,0"
+              End="-261.787082794596,-28.535579308508">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-130.643541397298,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-130.643541397298,0"
+                    Point2="-134.643541397298,0"
+                    Point3="-134.643541397298,-4" />
+                  <mssgle:LineSegment
+                    End="-134.643541397298,-24.535579308508" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-134.643541397298,-24.535579308508"
+                    Point2="-134.643541397298,-28.535579308508"
+                    Point3="-138.643541397298,-28.535579308508" />
+                  <mssgle:LineSegment
+                    End="-261.787082794596,-28.535579308508" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-190.449928116048,1,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\iNSERT &amp; UPDATED.Paths[Lookup Match Output]"
+          TopLeft="581.287082794596,382.935579308508">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="318.998646822893,11.95854358508"
+              Start="0,0"
+              End="311.498646822893,11.95854358508">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="155.499323411446,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.499323411446,0"
+                    Point2="159.499323411446,0"
+                    Point3="159.499323411446,4" />
+                  <mssgle:LineSegment
+                    End="159.499323411446,7.95854358508001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="159.499323411446,7.95854358508001"
+                    Point2="159.499323411446,11.95854358508"
+                    Point3="163.499323411446,11.95854358508" />
+                  <mssgle:LineSegment
+                    End="311.498646822893,11.95854358508" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="111.307936692696,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text=""
+          ParentId="Package\iNSERT &amp; UPDATED"
+          FontInfo="{assembly:Null}"
+          Size="28.8,40"
+          Id="e8b73694-d32b-4839-a581-011438aeef5a"
+          TopLeft="787.14287054782,627.058832323675" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\iNSERT &amp; UPDATED\Derived Column"
+          TopLeft="483.209504870926,155.168628178449" />
+        <EdgeLayout
+          Id="Package\iNSERT &amp; UPDATED.Paths[OLE DB Source Output]"
+          TopLeft="549.028579491012,76.6117648603182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.5809253799138,78.556863318131"
+              Start="0,0"
+              End="10.5809253799138,71.056863318131">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.2784316590655" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.2784316590655"
+                    Point2="0,39.2784316590655"
+                    Point3="4,39.2784316590655" />
+                  <mssgle:LineSegment
+                    End="6.58092537991377,39.2784316590655" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.58092537991377,39.2784316590655"
+                    Point2="10.5809253799138,39.2784316590655"
+                    Point3="10.5809253799138,43.2784316590655" />
+                  <mssgle:LineSegment
+                    End="10.5809253799138,71.056863318131" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\iNSERT &amp; UPDATED.Paths[Derived Column Output]"
+          TopLeft="559.609504870926,196.768628178449">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-34.7224220763297,165.366951130059"
+              Start="0,0"
+              End="-34.7224220763297,157.866951130059">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.6834755650294" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,78.6834755650294"
+                    Point2="0,82.6834755650294"
+                    Point3="-4,82.6834755650294" />
+                  <mssgle:LineSegment
+                    End="-30.7224220763297,82.6834755650294" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-30.7224220763297,82.6834755650294"
+                    Point2="-34.7224220763297,82.6834755650294"
+                    Point3="-34.7224220763297,86.6834755650294" />
+                  <mssgle:LineSegment
+                    End="-34.7224220763297,157.866951130059" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\iNSERT &amp; UPDATED.Paths[Row Count Output 11]"
+          TopLeft="957.352387566739,521.78823747338">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82.9803950856135"
+              Start="0,0"
+              End="0,75.4803950856135">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.4803950856135" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1"
+          TopLeft="731.54282833638,720.125498935241" />
+        <EdgeLayout
+          Id="Package\iNSERT &amp; UPDATED.Paths[OLE DB Command Output]"
+          TopLeft="957.961914224581,646.368632558994">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-140.419085888202,73.756866376247"
+              Start="0,0"
+              End="-140.419085888202,66.256866376247">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.8784331881235" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.8784331881235"
+                    Point2="0,36.8784331881235"
+                    Point3="-4,36.8784331881235" />
+                  <mssgle:LineSegment
+                    End="-136.419085888202,36.8784331881235" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-136.419085888202,36.8784331881235"
+                    Point2="-140.419085888202,36.8784331881235"
+                    Point3="-140.419085888202,40.8784331881235" />
+                  <mssgle:LineSegment
+                    End="-140.419085888202,66.256866376247" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\iNSERT &amp; UPDATED\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\iNSERT &amp; UPDATED\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\iNSERT &amp; UPDATED\Lookup 1">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\iNSERT &amp; UPDATED\iNSERT NEW ROWS 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

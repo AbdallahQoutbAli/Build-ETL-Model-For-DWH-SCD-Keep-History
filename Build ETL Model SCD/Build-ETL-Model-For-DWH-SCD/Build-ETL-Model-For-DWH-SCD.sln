@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33130.400
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Build-ETL-Model-For-DWH-SCD", "Build-ETL-Model-For-DWH-SCD\Build-ETL-Model-For-DWH-SCD.dtproj", "{0590E1F7-C622-4F13-A355-6D07C819D030}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0590E1F7-C622-4F13-A355-6D07C819D030}.Development|Default.ActiveCfg = Development
+		{0590E1F7-C622-4F13-A355-6D07C819D030}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA85F417-6C6D-466D-813F-A4E974381CDF}
+	EndGlobalSection
+EndGlobal
